@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
+import API_BASE_URL from "../config";
 
 const LeafIcon = () => (
   <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-5 h-5">
@@ -116,7 +117,7 @@ const SignUpPage = ({ onSwitch }) => {
     setError("");
     setLoading(true);
     try {
-      const response = await fetch("https://krushimitra-business.vercel.app/api/buyer/signup", {
+      const response = await fetch(`${API_BASE_URL}/api/buyer/signup`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(form),
@@ -202,7 +203,7 @@ const SignInPage = ({ onSwitch }) => {
     setError("");
     setLoading(true);
     try {
-      const response = await fetch("https://krushimitra-business.vercel.app/api/buyer/signin", {
+      const response = await fetch(`${API_BASE_URL}/api/buyer/signin`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(form),

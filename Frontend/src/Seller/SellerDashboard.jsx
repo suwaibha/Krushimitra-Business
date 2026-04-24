@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
+import API_BASE_URL from "../config";
 import {
   AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer
 } from "recharts";
@@ -102,7 +103,7 @@ const CropOffersModal = ({ crop, onClose }) => {
     const fetchOffers = async () => {
       try {
         const token = localStorage.getItem("sellerToken");
-        const res = await fetch(`https://krushimitra-business.vercel.app/api/seller/dashboard/crop/${crop._id}/offers`, {
+        const res = await fetch(`${API_BASE_URL}/api/seller/dashboard/crop/${crop._id}/offers`, {
           headers: { Authorization: `Bearer ${token}` }
         });
         if (res.ok) {
@@ -649,7 +650,7 @@ export default function SellerDashboard() {
           return;
         }
 
-        const response = await fetch("https://krushimitra-business.vercel.app/api/seller/dashboard", {
+        const response = await fetch(`${API_BASE_URL}/api/seller/dashboard`, {
           headers: {
             "Authorization": `Bearer ${token}`
           }
@@ -680,7 +681,7 @@ export default function SellerDashboard() {
   const handleAccept = async (id) => {
     try {
       const token = localStorage.getItem("sellerToken");
-      await fetch(`https://krushimitra-business.vercel.app/api/seller/dashboard/offer/${id}`, {
+      await fetch(`${API_BASE_URL}/api/seller/dashboard/offer/${id}`, {
         method: 'POST',
         headers: {
           "Content-Type": "application/json",
@@ -697,7 +698,7 @@ export default function SellerDashboard() {
   const handleDecline = async (id) => {
     try {
       const token = localStorage.getItem("sellerToken");
-      await fetch(`https://krushimitra-business.vercel.app/api/seller/dashboard/offer/${id}`, {
+      await fetch(`${API_BASE_URL}/api/seller/dashboard/offer/${id}`, {
         method: 'POST',
         headers: {
           "Content-Type": "application/json",
