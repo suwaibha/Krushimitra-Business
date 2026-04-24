@@ -116,7 +116,7 @@ const SignUpPage = ({ onSwitch }) => {
     setError("");
     setLoading(true);
     try {
-      const response = await fetch("http://localhost:5000/api/buyer/signup", {
+      const response = await fetch("http://krushimitra-business.vercel.app/api/buyer/signup", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(form),
@@ -202,7 +202,7 @@ const SignInPage = ({ onSwitch }) => {
     setError("");
     setLoading(true);
     try {
-      const response = await fetch("http://localhost:5000/api/buyer/signin", {
+      const response = await fetch("http://krushimitra-business.vercel.app/api/buyer/signin", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(form),

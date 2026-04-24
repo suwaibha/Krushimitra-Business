@@ -508,7 +508,7 @@ export default function BuyerDashboard() {
     if (!token) { navigate("/buyer-auth"); return; }
     
     // Fetch profile
-    fetch("http://localhost:5000/api/buyer/dashboard/profile", {
+    fetch("http://krushimitra-business.vercel.app/api/buyer/dashboard/profile", {
       headers: { Authorization: `Bearer ${token}` }
     })
       .then(r => r.json())
@@ -516,7 +516,7 @@ export default function BuyerDashboard() {
       .catch(() => {});
 
     // Fetch crops
-    fetch("http://localhost:5000/api/buyer/dashboard/crops", {
+    fetch("http://krushimitra-business.vercel.app/api/buyer/dashboard/crops", {
       headers: { Authorization: `Bearer ${token}` }
     })
       .then(r => r.json())
@@ -526,7 +526,7 @@ export default function BuyerDashboard() {
       .catch(err => console.error("Error fetching crops:", err));
 
     // Fetch stats
-    fetch("http://localhost:5000/api/buyer/dashboard/stats", {
+    fetch("http://krushimitra-business.vercel.app/api/buyer/dashboard/stats", {
       headers: { Authorization: `Bearer ${token}` }
     })
       .then(r => r.json())
@@ -539,7 +539,7 @@ export default function BuyerDashboard() {
   const handleUpdateProfile = async (newName) => {
     const token = localStorage.getItem("buyerToken");
     try {
-      const res = await fetch("http://localhost:5000/api/buyer/dashboard/profile", {
+      const res = await fetch("http://krushimitra-business.vercel.app/api/buyer/dashboard/profile", {
         method: "PUT",
         headers: { "Content-Type": "application/json", Authorization: `Bearer ${token}` },
         body: JSON.stringify({ name: newName })
@@ -559,7 +559,7 @@ export default function BuyerDashboard() {
   const handleToggleWishlist = async (cropId) => {
     try {
       const token = localStorage.getItem("buyerToken");
-      const res = await fetch("http://localhost:5000/api/buyer/dashboard/wishlist", {
+      const res = await fetch("http://krushimitra-business.vercel.app/api/buyer/dashboard/wishlist", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -585,7 +585,7 @@ export default function BuyerDashboard() {
   const handleSendOffer = async (cropId, sellerId, priceOffered, unit) => {
     try {
       const token = localStorage.getItem("buyerToken");
-      const res = await fetch("http://localhost:5000/api/buyer/dashboard/offer", {
+      const res = await fetch("http://krushimitra-business.vercel.app/api/buyer/dashboard/offer", {
         method: "POST",
         headers: { "Content-Type": "application/json", Authorization: `Bearer ${token}` },
         body: JSON.stringify({ cropId, sellerId, priceOffered: `₹${priceOffered}${unit || ''}` })
@@ -606,7 +606,7 @@ export default function BuyerDashboard() {
       const token = localStorage.getItem("buyerToken");
 
       // Step 1: Create Razorpay order on backend
-      const orderRes = await fetch("http://localhost:5000/api/buyer/dashboard/create-order", {
+      const orderRes = await fetch("http://krushimitra-business.vercel.app/api/buyer/dashboard/create-order", {
         method: "POST",
         headers: { "Content-Type": "application/json", Authorization: `Bearer ${token}` },
         body: JSON.stringify({ offerId })
@@ -636,7 +636,7 @@ export default function BuyerDashboard() {
           order_id: orderData.orderId,
           handler: async (response) => {
             // Step 4: Verify payment on backend
-            const verifyRes = await fetch("http://localhost:5000/api/buyer/dashboard/pay", {
+            const verifyRes = await fetch("http://krushimitra-business.vercel.app/api/buyer/dashboard/pay", {
               method: "POST",
               headers: { "Content-Type": "application/json", Authorization: `Bearer ${token}` },
               body: JSON.stringify({
@@ -650,7 +650,7 @@ export default function BuyerDashboard() {
             if (verifyRes.ok) {
               // Re-fetch stats immediately to update the dashboard cards
               try {
-                const statsRes = await fetch("http://localhost:5000/api/buyer/dashboard/stats", {
+                const statsRes = await fetch("http://krushimitra-business.vercel.app/api/buyer/dashboard/stats", {
                   headers: { Authorization: `Bearer ${token}` }
                 });
                 const updatedStats = await statsRes.json();

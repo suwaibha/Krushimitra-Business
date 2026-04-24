@@ -102,7 +102,7 @@ const CropOffersModal = ({ crop, onClose }) => {
     const fetchOffers = async () => {
       try {
         const token = localStorage.getItem("sellerToken");
-        const res = await fetch(`http://localhost:5000/api/seller/dashboard/crop/${crop._id}/offers`, {
+        const res = await fetch(`http://krushimitra-business.vercel.app/api/seller/dashboard/crop/${crop._id}/offers`, {
           headers: { Authorization: `Bearer ${token}` }
         });
         if (res.ok) {
@@ -649,7 +649,7 @@ export default function SellerDashboard() {
           return;
         }
 
-        const response = await fetch("http://localhost:5000/api/seller/dashboard", {
+        const response = await fetch("http://krushimitra-business.vercel.app/api/seller/dashboard", {
           headers: {
             "Authorization": `Bearer ${token}`
           }
@@ -680,7 +680,7 @@ export default function SellerDashboard() {
   const handleAccept = async (id) => {
     try {
       const token = localStorage.getItem("sellerToken");
-      await fetch(`http://localhost:5000/api/seller/dashboard/offer/${id}`, {
+      await fetch(`http://krushimitra-business.vercel.app/api/seller/dashboard/offer/${id}`, {
         method: 'POST',
         headers: {
           "Content-Type": "application/json",
@@ -697,7 +697,7 @@ export default function SellerDashboard() {
   const handleDecline = async (id) => {
     try {
       const token = localStorage.getItem("sellerToken");
-      await fetch(`http://localhost:5000/api/seller/dashboard/offer/${id}`, {
+      await fetch(`http://krushimitra-business.vercel.app/api/seller/dashboard/offer/${id}`, {
         method: 'POST',
         headers: {
           "Content-Type": "application/json",
@@ -715,7 +715,7 @@ export default function SellerDashboard() {
     try {
       const token = localStorage.getItem("sellerToken");
 
-      const response = await fetch("http://localhost:5000/api/seller/dashboard/crop", {
+      const response = await fetch("http://krushimitra-business.vercel.app/api/seller/dashboard/crop", {
         method: 'POST',
         headers: {
           "Content-Type": "application/json",
@@ -745,7 +745,7 @@ export default function SellerDashboard() {
   const handleEditCrop = async (cropId, cropData) => {
     try {
       const token = localStorage.getItem("sellerToken");
-      const response = await fetch(`http://localhost:5000/api/seller/dashboard/crop/${cropId}`, {
+      const response = await fetch(`http://krushimitra-business.vercel.app/api/seller/dashboard/crop/${cropId}`, {
         method: 'PUT',
         headers: {
           "Content-Type": "application/json",
@@ -773,7 +773,7 @@ export default function SellerDashboard() {
   const handleUpdateProfile = async (newName) => {
     try {
       const token = localStorage.getItem("sellerToken");
-      const response = await fetch('http://localhost:5000/api/seller/dashboard/profile', {
+      const response = await fetch('http://krushimitra-business.vercel.app/api/seller/dashboard/profile', {
         method: 'PUT',
         headers: {
           "Content-Type": "application/json",
